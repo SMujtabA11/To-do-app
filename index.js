@@ -1,27 +1,29 @@
-var btn = document.getElementById("btn");
-var text;
-var counter=1;
+let input_field=document.getElementById("inputField")
+let btn=document.getElementById("submit_btn")
 btn.addEventListener("click",function(){
-     text = document.getElementById("screen").value;
-     if(text.trim() === ""){
-        alert("enter some text");
-     }
-     else{
-     var h1 = document.createElement('h1');
-     h1.id="newText";
-     var btn1= document.createElement('button');
-     btn1.id="delete-btn";
-     btn1.textContent="Delete";
-    h1.textContent=` ${counter}: ${text}`;
-    document.getElementById("parent-div").append(h1,btn1);
-    document.getElementById("screen").value = "";
-}
-    btn1.addEventListener("click",function(){
-        h1.remove();
-        btn1.remove();
-        counter=1;
-    })
-    counter++;
+    let tasks=[];
+    if(input_field.value.trim()==""){
+        alert("Please enter a task");
+        return;
+    }
+    else {
+        tasks = [...tasks,input_field.value]
+    
+        var items=document.createElement('h2');
+        items.id="newText";
+        var deleteBtn= document.createElement('button');
+        deleteBtn.id="delete-btn";
+        deleteBtn.textContent="Delete";
+    
+        items.textContent=tasks;
+        document.getElementById("parent-div").append(items,deleteBtn);
+    
+        input_field.value = "";
+        
+        deleteBtn.addEventListener("click",function(){
+            items.remove();
+            deleteBtn.remove();
+        })
+    }
+    
 })
-
-
